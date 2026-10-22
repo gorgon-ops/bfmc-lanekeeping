@@ -1,0 +1,60 @@
+[build-system]
+requires = ["setuptools>=61"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "bfmc-lanekeeping"
+version = "0.2.0"
+description = "Vision-based lane keeping for the Bosch Future Mobility Challenge vehicle, with a closed-loop simulator"
+readme = "README.md"
+requires-python = ">=3.9"
+license = { file = "LICENSE" }
+authors = [{ name = "Stefan Oanea" }]
+keywords = ["bfmc", "lane-keeping", "opencv", "pure-pursuit", "stanley",
+            "raspberry-pi", "autonomous-driving", "simulator"]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Science/Research",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Topic :: Scientific/Engineering :: Image Recognition",
+]
+dependencies = [
+    "numpy>=1.21",
+    "opencv-python>=4.5",
+    "scipy>=1.7",
+    "pyserial>=3.5",
+    "PyYAML>=6.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=7.0",
+    "pytest-cov>=4.0",
+    "ruff>=0.4",
+]
+# Installed separately on the Pi: picamera2 ships with Raspberry Pi OS and is
+# not reliably installable from PyPI.
+pi = ["picamera2>=0.3"]
+
+[project.scripts]
+bfmc = "bfmc.cli:main"
+
+[project.urls]
+Homepage = "https://github.com/stefanoanea/bfmc-lanekeeping"
+Issues = "https://github.com/stefanoanea/bfmc-lanekeeping/issues"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-q"
+
+[tool.ruff]
+line-length = 100
+src = ["src", "tests"]
+target-version = "py39"
+
+[tool.ruff.lint]
+select = ["E", "F", "W", "I", "UP", "B", "C4"]

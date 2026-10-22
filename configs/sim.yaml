@@ -1,0 +1,22 @@
+# Closed-loop simulation - no hardware at all:
+#   python scripts/simulate.py --config configs/sim.yaml --track oval
+#
+# The simulator renders through the same warp the pipeline inverts, so these
+# geometry values must match between the two.
+
+camera:
+  backend: opencv
+  width: 640
+  height: 480
+
+metric:
+  lane_width_m: 0.35
+  view_depth_m: 1.20
+
+tracking:
+  lane_width_px: 320
+
+encoder:
+  enabled: false     # the simulator feeds speed back directly
+
+display: false

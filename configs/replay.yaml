@@ -1,0 +1,15 @@
+# Offline tuning against a recorded clip - no Pi, no Arduino:
+#   bfmc --config configs/replay.yaml --video docs/clips/lap.mp4
+
+camera:
+  backend: opencv
+  source: 0          # overridden by --video
+  loop_video: true
+
+encoder:
+  enabled: false     # no encoder, so the controller assumes a nominal speed
+
+control:
+  assumed_speed_ms: 0.4
+
+display: true

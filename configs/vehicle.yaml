@@ -1,0 +1,50 @@
+# On-vehicle configuration: Pi camera + Arduino encoder.
+# Every key is optional - anything omitted keeps the default from
+# src/bfmc/config.py, and an unknown key is an error rather than a no-op.
+
+camera:
+  backend: picamera2
+  width: 640
+  height: 480
+
+warp:
+  # Calibrate with scripts/calibrate_warp.py, parked on a straight: both lane
+  # markings should come out vertical and parallel in the bird's-eye view.
+  horizon_y_frac: 0.60
+  top_left_x_frac: 0.25
+  top_right_x_frac: 0.75
+
+metric:
+  # Measure these two, do not guess them: every physical quantity downstream
+  # is derived from them.
+  lane_width_m: 0.35      # real distance between the markings
+  view_depth_m: 1.20      # road depth the warped view covers
+
+tracking:
+  lane_width_px: 320      # that same lane width, measured in warped pixels
+  memory_frames: 15       # how long a lost boundary is replayed
+  width_tolerance: 0.35   # reject a pair of boundaries this far off the width
+
+vehicle:
+  wheelbase_m: 0.26
+  max_steer_deg: 30.0
+  max_lateral_accel_ms2: 2.0
+  min_speed_ms: 0.15
+  max_speed_ms: 1.20
+
+control:
+  law: pure_pursuit       # or stanley
+  feedforward: auto       # auto pairs it correctly with the law - see
+                          # src/bfmc/control.py before overriding this
+  lookahead_base_m: 0.25
+  lookahead_time_s: 0.45  # lookahead = base + this * speed
+  horizon_time_s: 1.1     # never outdrive what the lane fit can see
+  butter_cutoff: 0.15     # lower is smoother, higher is more responsive
+
+encoder:
+  enabled: true
+  port: /dev/ttyUSB0
+  baud_rate: 115200
+  wheel_circumference_m: 0.20
+
+display: true

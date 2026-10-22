@@ -1,0 +1,7 @@
+# Runtime dependencies. On the Raspberry Pi, install picamera2 from the system
+# packages instead of pip:  sudo apt install -y python3-picamera2
+numpy>=1.21
+opencv-python>=4.5
+scipy>=1.7
+pyserial>=3.5
+PyYAML>=6.0
