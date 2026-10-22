@@ -113,7 +113,9 @@ class HoughDetector:
             edges, 1, np.pi / 180, cfg.threshold,
             minLineLength=cfg.min_line_length, maxLineGap=cfg.max_line_gap,
         )
-        raw = [tuple(int(v) for v in s[0]) for s in segments] if segments is not None else []
+        # Newer OpenCV returns (N, 4) rather than (N, 1, 4).
+        flat = segments.reshape(-1, 4) if segments is not None else []
+        raw = [tuple(int(v) for v in s) for s in flat]
 
         left_segments, right_segments = split_by_slope(raw, cfg.min_slope)
         height = warped.shape[0]
