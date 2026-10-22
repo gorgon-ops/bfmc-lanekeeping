@@ -5,8 +5,7 @@ Raspberry Pi camera, an Arduino wheel encoder, and a pure-pursuit steering
 controller — with a closed-loop simulator so the whole thing can be run,
 measured and tuned without touching the car.
 
-[![CI](https://github.com/stefanoanea/bfmc-lanekeeping/actions/workflows/ci.yml/badge.svg)](https://github.com/stefanoanea/bfmc-lanekeeping/actions/workflows/ci.yml)
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
+[![CI](https://github.com/gorgon-ops/bfmc-lanekeeping/actions/workflows/ci.yml/badge.svg)](https://github.com/gorgon-ops/bfmc-lanekeeping/actions/workflows/ci.yml)
 
 ## Try it without hardware
 
@@ -107,7 +106,7 @@ Three of the defaults in this repository came out of that table:
 ## Install on the vehicle
 
 ```bash
-git clone https://github.com/stefanoanea/bfmc-lanekeeping.git
+git clone https://github.com/gorgon-ops/bfmc-lanekeeping.git
 cd bfmc-lanekeeping
 sudo apt install -y python3-picamera2   # ships with Raspberry Pi OS, not PyPI
 pip install -e .
@@ -231,6 +230,3 @@ docs/             architecture and tuning notes
   target speed; driving a servo and a motor controller is left to the vehicle's
   own stack.
 
-## License
-
-MIT — see [LICENSE](LICENSE).
